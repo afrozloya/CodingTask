@@ -57,4 +57,5 @@ mvn surefire-report:report
 ###### Report location
 file:///{project_root}/target/site/surefire-report.html
 
-
+Reports:
+![Surefire-Report](surefire-report.html)
