@@ -1,17 +1,18 @@
 # Dockerfile
 FROM openjdk:11-jdk
 
-ENV MAVEN_VERSION 3.3.9
+ARG JAR_FILE=target/emiratalent-jar-with-dependencies.jar
+# ARG JAR_LIB_FILE=target/lib/
 
-RUN mkdir -p /usr/share/maven \
-  && curl -fsSL http://apache.osuosl.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz \
-    | tar -xzC /usr/share/maven --strip-components=1 \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+# cd /usr/local/runme
+WORKDIR /usr/local/runme
 
-ENV MAVEN_HOME /usr/share/maven
+# copy target/find-links.jar /usr/local/runme/app.jar
+COPY ${JAR_FILE} app.jar
 
-VOLUME /root/.m2
+# copy project dependencies
+# cp -rf target/lib/  /usr/local/runme/lib
+# ADD ${JAR_LIB_FILE} lib/
 
-ENTRYPOINT ["java","com.emiratalent.EmiraTalentApp"]
-
-CMD ["mvn"] 
+# java -jar /usr/local/runme/app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
