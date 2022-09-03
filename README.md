@@ -58,4 +58,4 @@ mvn surefire-report:report
 file:///{project_root}/target/site/surefire-report.html
 
 Reports:
-![Surefire-Report](surefire-report.html)
+![Surefire-Report](surefire-report.png)
